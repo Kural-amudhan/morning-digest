@@ -199,6 +199,7 @@ def build_prompt(articles):
 
     return f"""You are an expert news curator writing a morning briefing email.
 Write like Superhuman AI and The Rundown AI — sharp, concise, high signal.
+Include a 'So What?' line after each story explaining why it matters to a SaaS founder
 
 Today is {today}.
 
