@@ -21,6 +21,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Check secrets are set
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        run: |
+          echo "GEMINI_API_KEY set: ${{ secrets.GEMINI_API_KEY != '' }}"
+          echo "GMAIL_ADDRESS set: ${{ secrets.GMAIL_ADDRESS != '' }}"
+          echo "GMAIL_APP_PASSWORD set: ${{ secrets.GMAIL_APP_PASSWORD != '' }}"
+          echo "RECIPIENT_EMAIL set: ${{ secrets.RECIPIENT_EMAIL != '' }}"
+
       - name: Run morning digest
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
