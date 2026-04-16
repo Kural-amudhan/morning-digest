@@ -461,6 +461,11 @@ def send_email(html):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    # Validate required env vars upfront
+    missing = [k for k in ["GEMINI_API_KEY", "GMAIL_ADDRESS", "GMAIL_APP_PASSWORD", "RECIPIENT_EMAIL"] if not os.environ.get(k)]
+    if missing:
+        raise RuntimeError(f"Missing environment variables: {', '.join(missing)}")
+
     print("[1/4] Fetching articles...")
     articles = fetch_articles()
 
